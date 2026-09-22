@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Information Culture — A Short Field Guide</title>
+<meta name="description" content="A short field guide to information culture: four habits and one exercise for paying attention well.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23F4F0E6'/><text x='8' y='12' font-size='11' text-anchor='middle' fill='%23C63A17' font-family='serif' font-style='italic'>i</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root{
+    --paper:#F4F0E6;
+    --paper-2:#EAE4D6;
+    --ink:#1B1812;
+    --ink-soft:rgba(27,24,18,.6);
+    --hair:rgba(27,24,18,.18);
+    --accent:#C63A17;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:'Fraunces',Georgia,serif;
+    font-optical-sizing:auto;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:var(--paper)}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+  .wrap{max-width:1140px;margin:0 auto;padding-left:clamp(20px,4vw,48px);padding-right:clamp(20px,4vw,48px)}
+
+  /* paper grain */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* reveal on scroll */
+  .js .reveal{opacity:0;transform:translateY(16px)}
+  .js .reveal.in{opacity:1;transform:translateY(0)}
+  .js .reveal{transition:opacity .7s ease,transform .7s ease}
+
+  /* masthead */
+  .masthead{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--hair)}
+  .masthead-in{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .brand{display:inline-flex;align-items:center;gap:8px;color:var(--ink);font-weight:500;text-decoration:none}
+  .brand svg{color:var(--accent);flex:none}
+  @media(max-width:680px){.masthead-hide-sm{display:none}}
+
+  /* hero */
+  .hero{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:82vh;min-height:82svh;padding:64px 0 96px}
+  .kicker{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
+  .kicker::after{content:"";width:56px;height:1px;background:var(--accent)}
+  .hero-title{font-size:clamp(2.9rem,8.2vw,6.6rem);line-height:1.02;letter-spacing:-.015em;font-weight:400}
+  .hero-title em{font-style:italic;color:var(--accent);font-weight:380}
+  .scramble{margin-top:34px;font-size:14px;letter-spacing:.02em;color:var(--ink-soft);cursor:default}
+  .hero-meta{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .hero-meta .dot{color:var(--accent)}
+  .scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--ink);opacity:.7}
+  .scroll-cue svg{display:block;animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+  /* sections */
+  .section{padding:clamp(72px,11vh,120px) 0;scroll-margin-top:70px}
+  .sec-label{display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:clamp(36px,6vh,56px)}
+  .sec-label b{color:var(--accent);font-weight:500}
+  .sec-label .rule{flex:1;height:1px;background:var(--hair)}
+
+  /* meaning */
+  .meaning-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(36px,6vw,88px);align-items:start}
+  .lede{font-size:clamp(1.3rem,2.4vw,1.75rem);line-height:1.52;font-weight:380}
+  .lede::first-letter{float:left;font-size:3.1em;line-height:.82;padding:.06em .12em 0 0;font-weight:560;color:var(--accent)}
+  .margin-note{border-left:1px solid var(--hair);padding-left:22px;font-size:12.5px;line-height:1.75;color:var(--ink-soft)}
+  .margin-note p + p{margin-top:14px}
+  .margin-note strong{color:var(--ink);font-weight:600}
+  .margin-note em{color:var(--accent);font-style:normal}
+  @media(max-width:820px){.meaning-grid{grid-template-columns:1fr}}
+
+  /* principles */
+  .principles{list-style:none;border-bottom:1px solid var(--hair)}
+  .principle{display:grid;grid-template-columns:3.6rem 1fr 1.15fr;gap:20px;align-items:baseline;padding:26px 18px;margin:0 -18px;border-top:1px solid var(--hair)}
+  .js .principle{transition:background .25s ease,opacity .7s ease,transform .7s ease}
+  .principle:hover{background:rgba(27,24,18,.04)}
+  .p-num{font-size:12px;color:var(--ink-soft);transition:color .25s ease}
+  .principle:hover .p-num{color:var(--accent)}
+  .principle h3{font-size:clamp(1.35rem,2.2vw,1.8rem);font-weight:480;font-style:italic;transition:transform .3s ease}
+  .principle:hover h3{transform:translateX(8px)}
+  .principle p{font-size:13px;line-height:1.7;color:var(--ink-soft)}
+  @media(max-width:720px){
+    .principle{grid-template-columns:2.4rem 1fr}
+    .principle p{grid-column:2}
+  }
+
+  /* signal exercise */
+  .signal-head{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,72px);align-items:end;margin-bottom:34px}
+  .signal-head h2{font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.06;letter-spacing:-.01em;font-weight:420}
+  .signal-head h2 em{color:var(--accent)}
+  .instr{font-size:12.5px;line-height:1.75;color:var(--ink-soft)}
+  #field{display:block;width:100%;background:var(--paper-2);border:1px solid var(--hair);cursor:crosshair;touch-action:pan-y}
+  .field-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px;font-size:12px}
+  .btn{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:11px 20px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn-accent{border-color:var(--accent);color:var(--accent)}
+  .btn-accent:hover{background:var(--accent);color:var(--paper)}
+  #field-status{margin-left:auto;color:var(--ink-soft);letter-spacing:.04em}
+  @media(max-width:560px){#field-status{margin-left:0;width:100%}}
+  @media(max-width:820px){.signal-head{grid-template-columns:1fr;align-items:start}}
+
+  /* footer */
+  footer{border-top:1px solid var(--hair);margin-top:20px;padding:clamp(64px,10vh,110px) 0 36px}
+  .closing{font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.12;font-weight:400}
+  .closing em{color:var(--accent)}
+  .footer-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:clamp(44px,8vh,80px);padding-top:16px;border-top:1px solid var(--hair);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *{animation-duration:.001s!important;transition-duration:.001s!important}
+  }
+</style>
+</head>
+<body id="top">
+
+  <header class="masthead mono">
+    <div class="wrap masthead-in">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0v10M0 5h10M1.5 1.5l7 7M8.5 1.5l-7 7" stroke="currentColor" stroke-width="1.3"/></svg>
+        FIELD NOTES
+      </a>
+      <span class="masthead-hide-sm">ON INFORMATION CULTURE</span>
+      <span>Nº 001</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="kicker mono">A short field guide to paying attention</p>
+        <h1 class="hero-title">
+          Information<br>
+          <em>culture</em> is a<br>
+          way of seeing.
+        </h1>
+        <p class="scramble mono" id="scramble-line" data-text="gather, question, share — in that order.">gather, question, share — in that order.</p>
+        <p class="hero-meta mono">
+          FOUR HABITS <span class="dot">·</span> ONE EXERCISE <span class="dot">·</span> THREE MINUTES <span class="dot">·</span> ZERO ALGORITHMS
+        </p>
+      </div>
+      <a class="scroll-cue" href="#meaning" aria-label="Scroll to first section">
+        <svg width="14" height="26" viewBox="0 0 14 26" fill="none" aria-hidden="true"><path d="M7 1v22M1.5 17.5L7 23.5l5.5-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </section>
+
+    <!-- 01 WHAT IT MEANS -->
+    <section class="section" id="meaning">
+      <div class="wrap">
+        <div class="sec-label mono reveal"><b>01</b><span>WHAT IT MEANS</span><span class="rule"></span></div>
+        <div class="meaning-grid">
+          <p class="lede reveal">Information culture is not about knowing more things. It is the quiet craft of deciding what deserves your attention — checking where a claim was born, asking what it leaves out, and passing on only what survives the questions.</p>
+          <aside class="margin-note mono reveal">
+            <p><strong>information culture</strong> /n./ — the habits, institutions and small courtesies that turn raw signal into shared knowledge.</p>
+            <p>It lives in libraries and newsrooms, in footnotes and citations — and in the two seconds you pause before pressing <em>share</em>.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 FOUR HABITS -->
+    <section class="section" id="principles">
+      <div class="wrap">
+        <div class="sec-label mono reveal"><b>02</b><span>FOUR HABITS</span><span class="rule"></span></div>
+        <ol class="principles">
+          <li class="principle reveal">
+            <span class="p-num mono">01</span>
+            <h3>Source before story</h3>
+            <p class="mono">Trace the origin first. A claim without an origin is a rumour wearing a good font.</p>
+          </li>
+          <li class="principle reveal">
+            <span class="p-num mono">02</span>
+            <h3>Context is content</h3>
+            <p class="mono">The same fact can warn or reassure depending on what stands beside it. Read the surroundings, not just the sentence.</p>
+          </li>
+          <li class="principle reveal">
+            <span class="p-num mono">03</span>
+            <h3>Share slower than you scroll</h3>
+            <p class="mono">Reposting is publishing. The pause between reading and forwarding is where culture actually happens.</p>
+          </li>
+          <li class="principle reveal">
+            <span class="p-num mono">04</span>
+            <h3>Keep the archive warm</h3>
+            <p class="mono">Knowledge survives by being stored, cited and revisited. Old information is not dead information — it is foundation.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 03 ONE EXERCISE -->
+    <section class="section" id="signal">
+      <div class="wrap">
+        <div class="sec-label mono reveal"><b>03</b><span>ONE EXERCISE</span><span class="rule"></span></div>
+        <div class="signal-head">
+          <h2 class="reveal">Separate the noise<br><em>from the signal.</em></h2>
+          <p class="instr mono reveal">One true sentence is hidden in the field below. Sweep your cursor across it like a lens — or press decode and let it resolve on its own.</p>
+        </div>
+        <canvas id="field" class="reveal" role="img" aria-label="Interactive field of static hiding the message: ask who benefits from your attention"></canvas>
+        <div class="field-controls mono reveal">
+          <button class="btn btn-accent" id="decode-btn" type="button">Decode</button>
+          <button class="btn" id="rescan-btn" type="button">Re-scramble</button>
+          <span id="field-status" aria-live="polite">static — sweep your cursor to search</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="closing reveal">Read slowly.<br><em>Question generously.</em></p>
+      <div class="footer-meta mono">
+        <span>FIELD NOTES — Nº 001</span>
+        <span class="masthead-hide-sm">SET IN FRAUNCES &amp; IBM PLEX MONO</span>
+        <span>COMPILED BY HAND, MMXXV</span>
+      </div>
+    </div>
+  </footer>
+
+<script>
+(function(){
+  'use strict';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var INK = '#1B1812', ACCENT = '#C63A17';
+
+  /* ---------- scramble line ---------- */
+  var GLYPHS = '#/\\<>+-=*:;%&';
+  var sub = document.getElementById('scramble-line');
+  var SUB_TEXT = sub.getAttribute('data-text');
+  var scrambling = false;
+
+  function scramble(text, dur){
+    if(reduceMotion){ sub.textContent = text; return; }
+    var start = performance.now();
+    scrambling = true;
+    function frame(now){
+      var p = Math.min((now - start) / dur, 1);
+      var solved = Math.floor(p * text.length);
+      var out = text.slice(0, solved);
+      for(var i = solved; i < text.length; i++){
+        out += text.charAt(i) === ' ' ? ' ' : GLYPHS.charAt((Math.random() * GLYPHS.length) | 0);
+      }
+      sub.textContent = out;
+      if(p < 1){ requestAnimationFrame(frame); } else { scrambling = false; }
+    }
+    requestAnimationFrame(frame);
+  }
+  setTimeout(function(){ if(!scrambling) scramble(SUB_TEXT, 1400); }, 450);
+  sub.addEventListener('mouseenter', function(){ if(!scrambling) scramble(SUB_TEXT, 900); });
+
+  /* ---------- reveal on scroll ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var el = e.target;
+          el.classList.add('in');
+          setTimeout(function(){ el.style.transitionDelay = ''; }, 900);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function(el, i){
+      el.style.transitionDelay = ((i % 3) * 80) + 'ms';
+      io.observe(el);
+    });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ---------- noise / signal field ---------- */
+  var canvas = document.getElementById('field');
+  var statusEl = document.getElementById('field-status');
+  var decodeBtn = document.getElementById('decode-btn');
+  var rescanBtn = document.getElementById('rescan-btn');
+  var ctx = canvas.getContext('2d');
+  var LINES = ['ASK WHO BENEFITS', 'FROM YOUR ATTENTION'];
+  var CHARSET = '01<>/\\|+-=*:;%#';
+  var W = 0, H = 0, dpr = 1, cell = 17, cols = 0, rows = 0;
+  var msg = null, msgCells = [], noise = [];
+  var mouse = { x: -9999, y: -9999, inside: false };
+  var lensR = 0, targetR = 0;
+  var BASE_R = 95;
+  var decoded = false;
+  var visible = false;
+  var lastStatus = 0;
+
+  function rebuild(){
+    W = canvas.clientWidth;
+    if(W < 40) return;
+    H = Math.round(W * (W < 640 ? 0.8 : 0.44));
+    canvas.style.height = H + 'px';
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cell = W < 640 ? 13 : 17;
+    cols = Math.ceil(W / cell);
+    rows = Math.ceil(H / cell);
+
+    /* render the hidden message offscreen, then sample which cells it touches */
+    var off = document.createElement('canvas');
+    off.width = W; off.height = H;
+    var o = off.getContext('2d');
+    o.fillStyle = '#000';
+    o.textAlign = 'center';
+    o.textBaseline = 'middle';
+    var fs = Math.min(H * 0.30, 110);
+    o.font = '600 ' + fs + 'px "IBM Plex Mono", monospace';
+    var widest = Math.max(o.measureText(LINES[0]).width, o.measureText(LINES[1]).width);
+    var maxW = W * 0.88;
+    if(widest > maxW){
+      fs = Math.max(9, Math.floor(fs * maxW / widest));
+      o.font = '600 ' + fs + 'px "IBM Plex Mono", monospace';
+    }
+    var lineH = fs * 1.3;
+    var y0 = H / 2 - lineH / 2;
+    o.fillText(LINES[0], W / 2, y0);
+    o.fillText(LINES[1], W / 2, y0 + lineH);
+
+    var data;
+    try { data = o.getImageData(0, 0, W, H).data; } catch(err){ data = null; }
+
+    msg = new Float32Array(cols * rows);
+    msgCells = [];
+    var offs = [[0,0],[-0.3,-0.3],[0.3,-0.3],[-0.3,0.3],[0.3,0.3],[0,-0.3],[0,0.3]];
+    for(var r = 0; r < rows; r++){
+      for(var c = 0; c < cols; c++){
+        var x = c * cell + cell / 2, y = r * cell + cell / 2;
+        if(!data){ msg[r * cols + c] = 0; continue; }
+        var hit = 0, total = 0;
+        for(var k = 0; k < offs.length; k++){
+          var px = x + offs[k][0] * cell, py = y + offs[k][1] * cell;
+          if(px < 0 || py < 0 || px >= W || py >= H) continue;
+          total++;
+          var idx = ((py | 0) * W + (px | 0)) * 4 + 3;
+          if(data[idx] > 110) hit++;
+        }
+        var inten = total ? hit / total : 0;
+        if(inten > 0.1){
+          msg[r * cols + c] = Math.min(1, inten * 1.35);
+          msgCells.push(r * cols + c);
+        }
+      }
+    }
+    noise = new Array(cols * rows);
+    for(var i = 0; i < noise.length; i++) noise[i] = CHARSET.charAt((Math.random() * CHARSET.length) | 0);
+  }
+
+  function draw(now){
+    requestAnimationFrame(draw);
+    if(!visible || W < 40) return;
+
+    lensR += (targetR - lensR) * 0.085;
+    if(Math.abs(targetR - lensR) < 0.4) lensR = targetR;
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.font = Math.round(cell * 0.8) + 'px "IBM Plex Mono", monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    var revealed = 0;
+    for(var r = 0; r < rows; r++){
+      var y = r * cell + cell / 2;
+      for(var c = 0; c < cols; c++){
+        var i = r * cols + c;
+        var x = c * cell + cell / 2;
+        var t = 0;
+        if(lensR > 1){
+          var dx = x - mouse.x, dy = y - mouse.y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          t = 1 - d / lensR;
+          if(t < 0) t = 0;
+          t = t * t * (3 - 2 * t); /* smoothstep falloff */
+        }
+        var inten = msg[i];
+        if(inten > 0){
+          var a = decoded ? 1 : t;
+          if(a > 0.04){
+            var size = cell * (0.24 + 0.44 * a) * (0.35 + 0.65 * inten);
+            ctx.globalAlpha = a;
+            ctx.fillStyle = decoded ? ACCENT : INK;
+            ctx.fillRect(x - size / 2, y - size / 2, size, size);
+          }
+          if(t > 0.55) revealed++;
+        }
+        var na = 0.3 * (1 - t * 0.9) * (decoded ? 0.3 : 1);
+        if(na > 0.015){
+          if(Math.random() < 0.012) noise[i] = CHARSET.charAt((Math.random() * CHARSET.length) | 0);
+          ctx.globalAlpha = na;
+          ctx.fillStyle = INK;
+          ctx.fillText(noise[i], x, y);
+        }
+      }
+    }
+    ctx.globalAlpha = 1;
+
+    if(now - lastStatus > 160 && msgCells.length){
+      lastStatus = now;
+      var pct = Math.min(100, Math.round(revealed / msgCells.length * 100));
+      if(decoded){ statusEl.textContent = 'signal clear — it was under the static all along'; }
+      else if(pct === 0){ statusEl.textContent = 'static — sweep your cursor to search'; }
+      else { statusEl.textContent = 'sweeping… ' + pct + '% resolved'; }
+    }
+  }
+
+  function localPos(e){
+    var rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  }
+  canvas.addEventListener('pointerenter', function(e){
+    localPos(e); mouse.inside = true;
+    if(!decoded) targetR = BASE_R;
+  });
+  canvas.addEventListener('pointermove', function(e){
+    localPos(e);
+    if(!mouse.inside){ mouse.inside = true; if(!decoded) targetR = BASE_R; }
+  });
+  canvas.addEventListener('pointerleave', function(){
+    mouse.inside = false;
+    if(!decoded) targetR = 0;
+  });
+
+  decodeBtn.addEventListener('click', function(){
+    decoded = true;
+    mouse.x = W / 2; mouse.y = H / 2;
+    targetR = Math.sqrt(W * W + H * H) * 0.55 + 30;
+  });
+  rescanBtn.addEventListener('click', function(){
+    decoded = false;
+    lensR = 0;
+    targetR = mouse.inside ? BASE_R : 0;
+    for(var i = 0; i < noise.length; i++) noise[i] = CHARSET.charAt((Math.random() * CHARSET.length) | 0);
+    statusEl.textContent = 'static — sweep your cursor to search';
+  });
+
+  /* only render while the field is on screen */
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ visible = es[0].isIntersecting; }, { threshold: 0 }).observe(canvas);
+  } else { visible = true; }
+
+  var rT;
+  window.addEventListener('resize', function(){
+    clearTimeout(rT);
+    rT = setTimeout(rebuild, 160);
+  });
+
+  rebuild();
+  requestAnimationFrame(draw);
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(rebuild); }
+})();
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Information Culture — A Short Field Guide</title>
+<meta name="description" content="A short field guide to information culture: four habits and one exercise for paying attention well.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23F4F0E6'/><text x='8' y='12' font-size='11' text-anchor='middle' fill='%23C63A17' font-family='serif' font-style='italic'>i</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root{
+    --paper:#F4F0E6;
+    --paper-2:#EAE4D6;
+    --ink:#1B1812;
+    --ink-soft:rgba(27,24,18,.6);
+    --hair:rgba(27,24,18,.18);
+    --accent:#C63A17;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:'Fraunces',Georgia,serif;
+    font-optical-sizing:auto;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:var(--paper)}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+  .wrap{max-width:1140px;margin:0 auto;padding-left:clamp(20px,4vw,48px);padding-right:clamp(20px,4vw,48px)}
+
+  /* paper grain */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* reveal on scroll */
+  .js .reveal{opacity:0;transform:translateY(16px)}
+  .js .reveal.in{opacity:1;transform:translateY(0)}
+  .js .reveal{transition:opacity .7s ease,transform .7s ease}
+
+  /* masthead */
+  .masthead{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--hair)}
+  .masthead-in{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .brand{display:inline-flex;align-items:center;gap:8px;color:var(--ink);font-weight:500;text-decoration:none}
+  .brand svg{color:var(--accent);flex:none}
+  @media(max-width:680px){.masthead-hide-sm{display:none}}
+
+  /* hero */
+  .hero{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:82vh;min-height:82svh;padding:64px 0 96px}
+  .kicker{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
+  .kicker::after{content:"";width:56px;height:1px;background:var(--accent)}
+  .hero-title{font-size:clamp(2.9rem,8.2vw,6.6rem);line-height:1.02;letter-spacing:-.015em;font-weight:400}
+  .hero-title em{font-style:italic;color:var(--accent);font-weight:380}
+  .scramble{margin-top:34px;font-size:14px;letter-spacing:.02em;color:var(--ink-soft);cursor:default}
+  .hero-meta{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .hero-meta .dot{color:var(--accent)}
+  .scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--ink);opacity:.7}
+  .scroll-cue svg{display:block;animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+  /* sections */
+  .section{padding:clamp(72px,11vh,120px) 0;scroll-margin-top:70px}
+  .sec-label{display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:clamp(36px,6vh,56px)}
+  .sec-label b{color:var(--accent);font-weight:500}
+  .sec-label .rule{flex:1;height:1px;background:var(--hair)}
+
+  /* meaning */
+  .meaning-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(36px,6vw,88px);align-items:start}
+  .lede{font-size:clamp(1.3rem,2.4vw,1.75rem);line-height:1.52;font-weight:380}
+  .lede::first-letter{float:left;font-size:3.1em;line-height:.82;padding:.06em .12em 0 0;font-weight:560;color:var(--accent)}
+  .margin-note{border-left:1px solid var(--hair);padding-left:22px;font-size:12.5px;line-height:1.75;color:var(--ink-soft)}
+  .margin-note p + p{margin-top:14px}
+  .margin-note strong{color:var(--ink);font-weight:600}
+  .margin-note em{color:var(--accent);font-style:normal}
+  @media(max-width:820px){.meaning-grid{grid-template-columns:1fr}}
+
+  /* principles */
+  .principles{list-style:none;border-bottom:1px solid var(--hair)}
+  .principle{display:grid;grid-template-columns:3.6rem 1fr 1.15fr;gap:20px;align-items:baseline;padding:26px 18px;margin:0 -18px;border-top:1px solid var(--hair)}
+  .js .principle{transition:background .25s ease,opacity .7s ease,transform .7s ease}
+  .principle:hover{background:rgba(27,24,18,.04)}
+  .p-num{font-size:12px;color:var(--ink-soft);transition:color .25s ease}
+  .principle:hover .p-num{color:var(--accent)}
+  .principle h3{font-size:clamp(1.35rem,2.2vw,1.8rem);font-weight:480;font-style:italic;transition:transform .3s ease}
+  .principle:hover h3{transform:translateX(8px)}
+  .principle p{font-size:13px;line-height:1.7;color:var(--ink-soft)}
+  @media(max-width:720px){
+    .principle{grid-template-columns:2.4rem 1fr}
+    .principle p{grid-column:2}
+  }
+
+  /* signal exercise */
+  .signal-head{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,72px);align-items:end;margin-bottom:34px}
+  .signal-head h2{font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.06;letter-spacing:-.01em;font-weight:420}
+  .signal-head h2 em{color:var(--accent)}
+  .instr{font-size:12.5px;line-height:1.75;color:var(--ink-soft)}
+  #field{display:block;width:100%;background:var(--paper-2);border:1px solid var(--hair);cursor:crosshair;touch-action:pan-y}
+  .field-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px;font-size:12px}
+  .btn{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:11px 20px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn-accent{border-color:var(--accent);color:var(--accent)}
+  .btn-accent:hover{background:var(--accent);color:var(--paper)}
+  #field-status{margin-left:auto;color:var(--ink-soft);letter-spacing:.04em}
+  @media(max-width:560px){#field-status{margin-left:0;width:100%}}
+  @media(max-width:820px){.signal-head{grid-template-columns:1fr;align-items:start}}
+
+  /* footer */
+  footer{border-top:1px solid var(--hair);margin-top:20px;padding:clamp(64px,10vh,110px) 0 36px}
+  .closing{font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.12;font-weight:400}
+  .closing em{color:var(--accent)}
+  .footer-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:clamp(44px,8vh,80px);padding-top:16px;border-top:1px solid var(--hair);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *{animation-duration:.001s!important;transition-duration:.001s!important}
+  }
+</style>
+</head>
+<body id="top">
+
+  <header class="masthead mono">
+    <div class="wrap masthead-in">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0v10M0 5h10M1.5 1.5l7 7M8.5 1.5l-7 7" stroke="currentColor" stroke-width="1.3"/></svg>
+        FIELD NOTES
+      </a>
+      <span class="masthead-hide-sm">ON INFORMATION CULTURE</span>
+      <span>Nº 001</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="kicker mono">A short field guide to paying attention</p>
+        <h1 class="hero-title">
+          Information<br>
+          <em>culture</em> is a<br>
+          way of seeing.
+        </h1>
+        <p class="scramble mono" id="scramble-line" data-text="gather, question, share — in that order.">gather, question, share — in that order.</p>
+        <p class="hero-meta mono">
+          FOUR HABITS <span class="dot">·</span> ONE EXERCISE <span class="dot">·</span> THREE MINUTES <span class="dot">·</span> ZERO ALGORITHMS
+        </p>
+      </div>
+      <a class="scroll-cue" href="#meaning" aria-label="Scroll to first section">
+        <svg width="14" height="26" viewBox="0 0 14 26" fill="none" aria-hidden="true"><path d="M7 1v22M1.5 17.5L7 23.5l5.5-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </section>
+
+    <!-- 01 WHAT IT MEANS -->
+    <section class="section" id="meaning">
+      <div class="wrap">
+        <div class="sec-label mono reveal"><b>01</b><span>WHAT IT MEANS</span><span class="rule"></span></div>
+        <div class="meaning-grid">
+          <p class="lede reveal">Information culture is not about knowing more things. It is the quiet craft of deciding what deserves your attention — checking where a claim was born, asking what it leaves out, and passing on only what survives the questions.</p>
+          <aside class="margin-note mono reveal">
+            <p><strong>information culture</strong> /n./ — the habits, institutions and small courtesies that turn raw signal into shared knowledge.</p>
+            <p>It lives in libraries and newsrooms, in footnotes and citations — and in the two seconds you pause before pressing <em>share</em>.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 FOUR HABITS -->
+    <section class="section" id="principles">
+      <div class="wrap">
+        <div class="sec-label mono reveal"><b>02</b><span>FOUR HABITS</span><span class="rule"></span></div>
+        <ol class="principles">
+          <li class="principle reveal">
+            <span class="p-num mono">01</span>
+            <h3>Source before story</h3>
+            <p class="mono">Trace the origin first. A claim without an origin is a rumour wearing a good font.</p>
+          </li>
+          <li class="principle reveal">
+            <span class="p-num mono">02</span>
+            <h3>Context is content</h3>
+            <p class="mono">The same fact can warn or reassure depending on what stands beside it. Read the surroundings, not just the sentence.</p>
+          </li>
+          <li class="principle reveal">
+            <span class="p-num mono">03</span>
+            <h3>Share slower than you scroll</h3>
+            <p class="mono">Reposting is publishing. The pause between reading and forwarding is where culture actually happens.</p>
+          </li>
+          <li class="principle reveal">
+            <span class="p-num mono">04</span>
+            <h3>Keep the archive warm</h3>
+            <p class="mono">Knowledge survives by being stored, cited and revisited. Old information is not dead information — it is foundation.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 03 ONE EXERCISE -->
+    <section class="section" id="signal">
+      <div class="wrap">
+        <div class="sec-label mono reveal"><b>03</b><span>ONE EXERCISE</span><span class="rule"></span></div>
+        <div class="signal-head">
+          <h2 class="reveal">Separate the noise<br><em>from the signal.</em></h2>
+          <p class="instr mono reveal">One true sentence is hidden in the field below. Sweep your cursor across it like a lens — or press decode and let it resolve on its own.</p>
+        </div>
+        <canvas id="field" class="reveal" role="img" aria-label="Interactive field of static hiding the message: ask who benefits from your attention"></canvas>
+        <div class="field-controls mono reveal">
+          <button class="btn btn-accent" id="decode-btn" type="button">Decode</button>
+          <button class="btn" id="rescan-btn" type="button">Re-scramble</button>
+          <span id="field-status" aria-live="polite">static — sweep your cursor to search</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="closing reveal">Read slowly.<br><em>Question generously.</em></p>
+      <div class="footer-meta mono">
+        <span>FIELD NOTES — Nº 001</span>
+        <span class="masthead-hide-sm">SET IN FRAUNCES &amp; IBM PLEX MONO</span>
+        <span>COMPILED BY HAND, MMXXV</span>
+      </div>
+    </div>
+  </footer>
+
+<script>
+(function(){
+  'use strict';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var INK = '#1B1812', ACCENT = '#C63A17';
+
+  /* ---------- scramble line ---------- */
+  var GLYPHS = '#/\\<>+-=*:;%&';
+  var sub = document.getElementById('scramble-line');
+  var SUB_TEXT = sub.getAttribute('data-text');
+  var scrambling = false;
+
+  function scramble(text, dur){
+    if(reduceMotion){ sub.textContent = text; return; }
+    var start = performance.now();
+    scrambling = true;
+    function frame(now){
+      var p = Math.min((now - start) / dur, 1);
+      var solved = Math.floor(p * text.length);
+      var out = text.slice(0, solved);
+      for(var i = solved; i < text.length; i++){
+        out += text.charAt(i) === ' ' ? ' ' : GLYPHS.charAt((Math.random() * GLYPHS.length) | 0);
+      }
+      sub.textContent = out;
+      if(p < 1){ requestAnimationFrame(frame); } else { scrambling = false; }
+    }
+    requestAnimationFrame(frame);
+  }
+  setTimeout(function(){ if(!scrambling) scramble(SUB_TEXT, 1400); }, 450);
+  sub.addEventListener('mouseenter', function(){ if(!scrambling) scramble(SUB_TEXT, 900); });
+
+  /* ---------- reveal on scroll ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var el = e.target;
+          el.classList.add('in');
+          setTimeout(function(){ el.style.transitionDelay = ''; }, 900);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function(el, i){
+      el.style.transitionDelay = ((i % 3) * 80) + 'ms';
+      io.observe(el);
+    });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ---------- noise / signal field ---------- */
+  var canvas = document.getElementById('field');
+  var statusEl = document.getElementById('field-status');
+  var decodeBtn = document.getElementById('decode-btn');
+  var rescanBtn = document.getElementById('rescan-btn');
+  var ctx = canvas.getContext('2d');
+  var LINES = ['ASK WHO BENEFITS', 'FROM YOUR ATTENTION'];
+  var CHARSET = '01<>/\\|+-=*:;%#';
+  var W = 0, H = 0, dpr = 1, cell = 17, cols = 0, rows = 0;
+  var msg = null, msgCells = [], noise = [];
+  var mouse = { x: -9999, y: -9999, inside: false };
+  var lensR = 0, targetR = 0;
+  var BASE_R = 95;
+  var decoded = false;
+  var visible = false;
+  var lastStatus = 0;
+
+  function rebuild(){
+    W = canvas.clientWidth;
+    if(W < 40) return;
+    H = Math.round(W * (W < 640 ? 0.8 : 0.44));
+    canvas.style.height = H + 'px';
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cell = W < 640 ? 13 : 17;
+    cols = Math.ceil(W / cell);
+    rows = Math.ceil(H / cell);
+
+    /* render the hidden message offscreen, then sample which cells it touches */
+    var off = document.createElement('canvas');
+    off.width = W; off.height = H;
+    var o = off.getContext('2d');
+    o.fillStyle = '#000';
+    o.textAlign = 'center';
+    o.textBaseline = 'middle';
+    var fs = Math.min(H * 0.30, 110);
+    o.font = '600 ' + fs + 'px "IBM Plex Mono", monospace';
+    var widest = Math.max(o.measureText(LINES[0]).width, o.measureText(LINES[1]).width);
+    var maxW = W * 0.88;
+    if(widest > maxW){
+      fs = Math.max(9, Math.floor(fs * maxW / widest));
+      o.font = '600 ' + fs + 'px "IBM Plex Mono", monospace';
+    }
+    var lineH = fs * 1.3;
+    var y0 = H / 2 - lineH / 2;
+    o.fillText(LINES[0], W / 2, y0);
+    o.fillText(LINES[1], W / 2, y0 + lineH);
+
+    var data;
+    try { data = o.getImageData(0, 0, W, H).data; } catch(err){ data = null; }
+
+    msg = new Float32Array(cols * rows);
+    msgCells = [];
+    var offs = [[0,0],[-0.3,-0.3],[0.3,-0.3],[-0.3,0.3],[0.3,0.3],[0,-0.3],[0,0.3]];
+    for(var r = 0; r < rows; r++){
+      for(var c = 0; c < cols; c++){
+        var x = c * cell + cell / 2, y = r * cell + cell / 2;
+        if(!data){ msg[r * cols + c] = 0; continue; }
+        var hit = 0, total = 0;
+        for(var k = 0; k < offs.length; k++){
+          var px = x + offs[k][0] * cell, py = y + offs[k][1] * cell;
+          if(px < 0 || py < 0 || px >= W || py >= H) continue;
+          total++;
+          var idx = ((py | 0) * W + (px | 0)) * 4 + 3;
+          if(data[idx] > 110) hit++;
+        }
+        var inten = total ? hit / total : 0;
+        if(inten > 0.1){
+          msg[r * cols + c] = Math.min(1, inten * 1.35);
+          msgCells.push(r * cols + c);
+        }
+      }
+    }
+    noise = new Array(cols * rows);
+    for(var i = 0; i < noise.length; i++) noise[i] = CHARSET.charAt((Math.random() * CHARSET.length) | 0);
+  }
+
+  function draw(now){
+    requestAnimationFrame(draw);
+    if(!visible || W < 40) return;
+
+    lensR += (targetR - lensR) * 0.085;
+    if(Math.abs(targetR - lensR) < 0.4) lensR = targetR;
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.font = Math.round(cell * 0.8) + 'px "IBM Plex Mono", monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    var revealed = 0;
+    for(var r = 0; r < rows; r++){
+      var y = r * cell + cell / 2;
+      for(var c = 0; c < cols; c++){
+        var i = r * cols + c;
+        var x = c * cell + cell / 2;
+        var t = 0;
+        if(lensR > 1){
+          var dx = x - mouse.x, dy = y - mouse.y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          t = 1 - d / lensR;
+          if(t < 0) t = 0;
+          t = t * t * (3 - 2 * t); /* smoothstep falloff */
+        }
+        var inten = msg[i];
+        if(inten > 0){
+          var a = decoded ? 1 : t;
+          if(a > 0.04){
+            var size = cell * (0.24 + 0.44 * a) * (0.35 + 0.65 * inten);
+            ctx.globalAlpha = a;
+            ctx.fillStyle = decoded ? ACCENT : INK;
+            ctx.fillRect(x - size / 2, y - size / 2, size, size);
+          }
+          if(t > 0.55) revealed++;
+        }
+        var na = 0.3 * (1 - t * 0.9) * (decoded ? 0.3 : 1);
+        if(na > 0.015){
+          if(Math.random() < 0.012) noise[i] = CHARSET.charAt((Math.random() * CHARSET.length) | 0);
+          ctx.globalAlpha = na;
+          ctx.fillStyle = INK;
+          ctx.fillText(noise[i], x, y);
+        }
+      }
+    }
+    ctx.globalAlpha = 1;
+
+    if(now - lastStatus > 160 && msgCells.length){
+      lastStatus = now;
+      var pct = Math.min(100, Math.round(revealed / msgCells.length * 100));
+      if(decoded){ statusEl.textContent = 'signal clear — it was under the static all along'; }
+      else if(pct === 0){ statusEl.textContent = 'static — sweep your cursor to search'; }
+      else { statusEl.textContent = 'sweeping… ' + pct + '% resolved'; }
+    }
+  }
+
+  function localPos(e){
+    var rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  }
+  canvas.addEventListener('pointerenter', function(e){
+    localPos(e); mouse.inside = true;
+    if(!decoded) targetR = BASE_R;
+  });
+  canvas.addEventListener('pointermove', function(e){
+    localPos(e);
+    if(!mouse.inside){ mouse.inside = true; if(!decoded) targetR = BASE_R; }
+  });
+  canvas.addEventListener('pointerleave', function(){
+    mouse.inside = false;
+    if(!decoded) targetR = 0;
+  });
+
+  decodeBtn.addEventListener('click', function(){
+    decoded = true;
+    mouse.x = W / 2; mouse.y = H / 2;
+    targetR = Math.sqrt(W * W + H * H) * 0.55 + 30;
+  });
+  rescanBtn.addEventListener('click', function(){
+    decoded = false;
+    lensR = 0;
+    targetR = mouse.inside ? BASE_R : 0;
+    for(var i = 0; i < noise.length; i++) noise[i] = CHARSET.charAt((Math.random() * CHARSET.length) | 0);
+    statusEl.textContent = 'static — sweep your cursor to search';
+  });
+
+  /* only render while the field is on screen */
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ visible = es[0].isIntersecting; }, { threshold: 0 }).observe(canvas);
+  } else { visible = true; }
+
+  var rT;
+  window.addEventListener('resize', function(){
+    clearTimeout(rT);
+    rT = setTimeout(rebuild, 160);
+  });
+
+  rebuild();
+  requestAnimationFrame(draw);
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(rebuild); }
+})();
+</script>
+</body>
+</html>
